@@ -1,3 +1,4 @@
+//https://github.com/dcollao/coding-autolayout.git
 //
 //  ViewController.swift
 //  Coding-Autolayout
@@ -16,7 +17,7 @@ class ViewController: UIViewController {
     let purpleView = UIView()
     let blueView = UIView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,10 +48,10 @@ class ViewController: UIViewController {
         setupOrangeViewConstraints()
         setupPurpleViewConstraints()
         setupBlueViewConstraints()
-
+        
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,158 +65,178 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             orangeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            orangeView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                               constant: -50.0),
+            orangeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50.0),
             orangeView.heightAnchor.constraint(equalToConstant: 57.0),
             orangeView.widthAnchor.constraint(equalToConstant: 200.0)
             ])
         
-        //All that code after of this is the same.
+        //All that code after of this is the same writed in another way.
         
         
         /*
+         
+         //The item is the view who we are setting constraints
+         //the attribute is the constraint, you put . and 'll show the respective options.
+         //relatedBy can be equal, greaterThanOrEqual, lessThanOrEqual
+         //Superview = view
+         
+         
+         let orangeViewCenterXConstraint = NSLayoutConstraint(item: orangeView,
+         attribute: .centerX,
+         relatedBy: .equal,
+         toItem: view,
+         attribute: .centerX,
+         multiplier: 1.0,
+         constant: 0.0)
+         
+         let orangeViewBottomSpaceConstraint = NSLayoutConstraint(item: orangeView,
+         attribute: .bottom,
+         relatedBy: .equal,
+         toItem: view,
+         attribute: .bottomMargin,
+         multiplier: 1.0,
+         constant: -50.0)
+         
+         //Remember the origin of the view start in the top 0,0 ...
+         
+         let orangeViewHeightConstraint = NSLayoutConstraint(item: orangeView,
+         attribute: .height,
+         relatedBy: .equal,
+         toItem: nil,
+         attribute: .notAnAttribute,
+         multiplier: 1.0,
+         constant: 57.0)
+         
+         let orangeViewWidthConstraint = NSLayoutConstraint(item: orangeView,
+         attribute: .width,
+         relatedBy: .equal,
+         toItem: nil,
+         attribute: .notAnAttribute,
+         multiplier: 1.0,
+         constant: 200.0)
+         
+         
+         view.addConstraints([
+         orangeViewCenterXConstraint,
+         orangeViewWidthConstraint,
+         orangeViewHeightConstraint,
+         orangeViewBottomSpaceConstraint])
+         
+         */
         
-        //The item is the view who we are setting constraints
-        //the attribute is the constraint, you put . and 'll show the respective options.
-        //relatedBy can be equal, greaterThanOrEqual, lessThanOrEqual
-        //Superview = view
-        
-        
-        let orangeViewCenterXConstraint = NSLayoutConstraint(item: orangeView,
-                                                             attribute: .centerX,
-                                                             relatedBy: .equal,
-                                                             toItem: view,
-                                                             attribute: .centerX,
-                                                             multiplier: 1.0,
-                                                             constant: 0.0)
-        
-        let orangeViewBottomSpaceConstraint = NSLayoutConstraint(item: orangeView,
-                                                                 attribute: .bottom,
-                                                                 relatedBy: .equal,
-                                                                 toItem: view,
-                                                                 attribute: .bottomMargin,
-                                                                 multiplier: 1.0,
-                                                                 constant: -50.0)
-        
-        //Remember the origin of the view start in the top 0,0 ...
-        
-        let orangeViewHeightConstraint = NSLayoutConstraint(item: orangeView,
-                                                            attribute: .height,
-                                                            relatedBy: .equal,
-                                                            toItem: nil,
-                                                            attribute: .notAnAttribute,
-                                                            multiplier: 1.0,
-                                                            constant: 57.0)
-        
-        let orangeViewWidthConstraint = NSLayoutConstraint(item: orangeView,
-                                                           attribute: .width,
-                                                           relatedBy: .equal,
-                                                           toItem: nil,
-                                                           attribute: .notAnAttribute,
-                                                           multiplier: 1.0,
-                                                           constant: 200.0)
-    
-    
-        view.addConstraints([
-            orangeViewCenterXConstraint,
-            orangeViewWidthConstraint,
-            orangeViewHeightConstraint,
-            orangeViewBottomSpaceConstraint])
-        
-        */
- 
     }
     
     
     func setupPurpleViewConstraints(){
         
-    purpleView.translatesAutoresizingMaskIntoConstraints = false
+        purpleView.translatesAutoresizingMaskIntoConstraints = false
         
-        let purpleViewLeadingSpaceConstraint = NSLayoutConstraint(item: purpleView,
-                                                                  attribute: .leading,
-                                                                  relatedBy: .equal,
-                                                                  toItem: view,
-                                                                  attribute: .leadingMargin,
-                                                                  multiplier: 1.0,
-                                                                  constant: 8.0)
+        NSLayoutConstraint.activate([
+            purpleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8.0),
+            purpleView.bottomAnchor.constraint(equalTo: orangeView.topAnchor, constant: -8.0),
+            purpleView.trailingAnchor.constraint(equalTo: blueView.leadingAnchor, constant: -8.0),
+            purpleView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)])
         
-        let purpleViewBottomSpaceConstraint = NSLayoutConstraint(item: purpleView,
-                                                                 attribute: .bottom,
-                                                                 relatedBy: .equal,
-                                                                 toItem: orangeView,
-                                                                 attribute: .top,
-                                                                 multiplier: 1.0,
-                                                                 constant: -8.0)
+        /*
+         let purpleViewLeadingSpaceConstraint = NSLayoutConstraint(item: purpleView,
+         attribute: .leading,
+         relatedBy: .equal,
+         toItem: view,
+         attribute: .leadingMargin,
+         multiplier: 1.0,
+         constant: 8.0)
+         
+         let purpleViewBottomSpaceConstraint = NSLayoutConstraint(item: purpleView,
+         attribute: .bottom,
+         relatedBy: .equal,
+         toItem: orangeView,
+         attribute: .top,
+         multiplier: 1.0,
+         constant: -8.0)
+         
+         let purpleViewTrailingSpaceConstraint = NSLayoutConstraint(item: purpleView,
+         attribute: .trailing,
+         relatedBy: .equal,
+         toItem: blueView,
+         attribute: .leading,
+         multiplier: 1.0,
+         constant:  -8.0)
+         
+         
+         //I use topLayoutGuide or botLayoutGuide when I need to use the margin.
+         let purpleViewTopSpaceConstraint = NSLayoutConstraint(item: purpleView,
+         attribute: .top,
+         relatedBy: .equal,
+         toItem: self.topLayoutGuide,
+         attribute: .bottom,
+         multiplier: 1.0,
+         constant: 8.0)
+         
+         
+         view.addConstraints([
+         //purpleViewLeadingSpaceConstraint,
+         //purpleViewBottomSpaceConstraint,
+         //purpleViewTrailingSpaceConstraint,
+         purpleViewTopSpaceConstraint])
+         */
         
-        let purpleViewTrailingSpaceConstraint = NSLayoutConstraint(item: purpleView,
-                                                                   attribute: .trailing,
-                                                                   relatedBy: .equal,
-                                                                   toItem: blueView,
-                                                                   attribute: .leading,
-                                                                   multiplier: 1.0,
-                                                                   constant:  -8.0)
-        
-        //I use topLayoutGuide or botLayoutGuide when I need to use the margin.
-        let purpleViewTopSpaceConstraint = NSLayoutConstraint(item: purpleView,
-                                                              attribute: .top,
-                                                              relatedBy: .equal,
-                                                              toItem: self.topLayoutGuide,
-                                                              attribute: .bottom,
-                                                              multiplier: 1.0,
-                                                              constant: 8.0)
-        
-        view.addConstraints([
-            purpleViewLeadingSpaceConstraint,
-            purpleViewBottomSpaceConstraint,
-            purpleViewTrailingSpaceConstraint,
-            purpleViewTopSpaceConstraint])
     }
     
     func setupBlueViewConstraints(){
         
         blueView.translatesAutoresizingMaskIntoConstraints = false
         
-        let blueViewTopSpaceConstraint = NSLayoutConstraint(item: blueView,
-                                                            attribute: .top,
-                                                            relatedBy: .equal,
-                                                            toItem: self.topLayoutGuide,
-                                                            attribute: .bottom,
-                                                            multiplier: 1.0,
-                                                            constant: 8.0)
+        NSLayoutConstraint.activate([
+            blueView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0),
+            blueView.bottomAnchor.constraint(equalTo: orangeView.topAnchor, constant: -8.0),
+            blueView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8.0),
+            blueView.widthAnchor.constraint(equalTo: purpleView.widthAnchor, constant: 0.0)])
         
-        let blueViewBottomSpaceConstraint = NSLayoutConstraint(item: blueView,
-                                                               attribute: .bottom,
-                                                               relatedBy: .equal,
-                                                               toItem: orangeView,
-                                                               attribute: .top,
-                                                               multiplier: 1.0,
-                                                               constant: -8.0)
         
-        let blueViewTrailingSpaceConstraint = NSLayoutConstraint(item: blueView,
-                                                                 attribute: .trailing,
-                                                                 relatedBy: .equal,
-                                                                 toItem: view,
-                                                                 attribute: .trailingMargin,
-                                                                 multiplier: 1.0,
-                                                                 constant:  -8.0)
         
-        let equalWidthConstraints = NSLayoutConstraint(item: blueView,
-                                                       attribute: .width,
-                                                       relatedBy: .equal,
-                                                       toItem: purpleView,
-                                                       attribute: .width,
-                                                       multiplier: 1.0,
-                                                       constant: 0.0)
-
-        view.addConstraints([
-            blueViewBottomSpaceConstraint,
-            blueViewTrailingSpaceConstraint,
-            blueViewTopSpaceConstraint,
-            equalWidthConstraints])
+        
+        /*let blueViewTopSpaceConstraint = NSLayoutConstraint(item: blueView,
+         attribute: .top,
+         relatedBy: .equal,
+         toItem: self.topLayoutGuide,
+         attribute: .bottom,
+         multiplier: 1.0,
+         constant: 8.0)
+         
+         let blueViewBottomSpaceConstraint = NSLayoutConstraint(item: blueView,
+         attribute: .bottom,
+         relatedBy: .equal,
+         toItem: orangeView,
+         attribute: .top,
+         multiplier: 1.0,
+         constant: -8.0)
+         
+         let blueViewTrailingSpaceConstraint = NSLayoutConstraint(item: blueView,
+         attribute: .trailing,
+         relatedBy: .equal,
+         toItem: view,
+         attribute: .trailingMargin,
+         multiplier: 1.0,
+         constant:  -8.0)
+         
+         let equalWidthConstraints = NSLayoutConstraint(item: blueView,
+         attribute: .width,
+         relatedBy: .equal,
+         toItem: purpleView,
+         attribute: .width,
+         multiplier: 1.0,
+         constant: 0.0)*/
+        
+        //view.addConstraints([
+        //blueViewTopSpaceConstraint])
+        // blueViewTrailingSpaceConstraint,
+        //blueViewTopSpaceConstraint,
+        // equalWidthConstraints
+        
     }
     
     
-
+    
     
 }
 
